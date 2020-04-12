@@ -10,8 +10,25 @@ This Django project is the Assignment for Internship at RockstarChef submitted o
     "rating": 5                                      # Any number from 1-5
 }
 ```
+# List of Auth APIs
 
-# List of APIs
+## User Login
+Send a `POST` request to the following url with request body containing "username" and "password"
+```
+http://127.0.0.1:8000/user/login
+```
+## User Signup 
+Send a `POST` request to the following url with request body containing "username" and "password"
+```
+http://127.0.0.1:8000/user/signup
+```
+## User Logout
+Send a `GET` request to the following url 
+```
+http://127.0.0.1:8000/user/logout
+```
+
+# List of Movie APIs
 
 ## Create
 To Create a new Movie object, send a `POST` request to the follwing url and include fields -  "name" and "rating" in the body of the request.
