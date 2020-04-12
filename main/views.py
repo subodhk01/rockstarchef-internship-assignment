@@ -10,8 +10,10 @@ import json
 
 from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def order_movies(request, order_by):
+    if not request.user.is_authenticated:
+        return HttpResponse('Permission denied, you need to login first')
     try:
         movies = Movie.objects.all().order_by(Lower(order_by))
         movie_list = []
