@@ -10,6 +10,18 @@ This Django project is the Assignment for Internship at RockstarChef submitted o
     "rating": 5                                      # Any number from 1-5
 }
 ```
+# How to run the project
+ - Clone the project
+ - Create a python virtual environment, if you don't know how to refer https://docs.python.org/3/tutorial/venv.html
+ - `pip install -r requirements.txt`
+ - `python manage.py createsuperuser`
+ - `python manage.py runserver` <br><br>
+I have already included a db.sqlite3 file but I case you want to create a new database for your project you can, just don't forget to apply the migrations:
+ - `python manage.py makemigrations`
+ - `python manage.py migrate`
+ - and then run the server using `python manage.py runserver` <br><br>
+All the APIs require an authenticated user, therefore you may want to consider using the login/signup APIs first.
+
 # List of Auth APIs
 
 ## User Login
@@ -54,8 +66,18 @@ http://localhost:8000/api/movies/{MOVIE_ID}/
 
 ## Delete
 To delete a particular Movie object, send a `DELETE` http request at the following url:
+```bash
+http://localhost:8000/api/movies/{MOVIE_ID}/            # Don't forget the trailing backslash
 ```
-http://localhost:8000/api/movies/{MOVIE_ID}
+## Search query
+To Search for a particular movie by - name & rating , search fields can be altered through `main/api_views.py` file. Send a `GET` request with parameter `search` to the follwing url:
+```
+http://localhost:8000/api/movies
+```
+## Sorting 
+To sort the Movie list, send a `GET` request to the following url, wherer `{ORDER_BY}` is the name of field by which you want to sort the list
+```
+http://localhost:8000/api/movies/order/{ORDER_BY}
 ```
 
 
