@@ -1,9 +1,31 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
+from django.core import serializers
+from django.db.models.functions import Lower
+from .models import Movie
+from .serializers import MovieSerializer
+import json
 
 from django.views.decorators.csrf import csrf_exempt
+
+
+def order_movies(request, order_by):
+    try:
+        movies = Movie.objects.all().order_by(Lower(order_by))
+        movie_list = []
+        for movie in movies:
+            movie_list.append({
+                "id" : movie.id,
+                "name" : movie.name,
+                "time_created" :  str(movie.time_created),
+                "rating" : movie.rating
+            })
+        movie_list = json.dumps(movie_list)
+        return HttpResponse(movie_list, content_type="text/json-comment-filtered")
+    except:
+        return HttpResponse('Invalid Query')
 
 @csrf_exempt
 def user_login(request):

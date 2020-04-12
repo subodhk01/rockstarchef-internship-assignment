@@ -6,6 +6,7 @@ from main import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/movies/order/<order_by>', views.order_movies),
     path('user/login', views.user_login),
     path('user/signup', views.user_register),
     path('user/logout', views.user_logout),
