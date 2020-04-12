@@ -10,8 +10,11 @@ def user_login(request):
     if request.user.is_authenticated :
         return HttpResponse('Already Logged in')
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+        except:
+            return HttpResponse('Invalid Request - include "username" and "password" in the request body')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -24,8 +27,11 @@ def user_login(request):
 @csrf_exempt
 def user_register(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+        except:
+            return HttpResponse('Invalid Request - include "username" and "password" in the request body')
         try:
             email = request.POST['email']
         except:
