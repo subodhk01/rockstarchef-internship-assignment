@@ -75,7 +75,7 @@ To Search for a particular movie by - name & rating , search fields can be alter
 http://localhost:8000/api/movies
 ```
 ## Sorting 
-To sort the Movie list, send a `GET` request to the following url, wherer `{ORDER_BY}` is the name of field by which you want to sort the list
+To sort the Movie list, send a `GET` request to the following url, where `{ORDER_BY}` is the name of field by which you want to sort the list
 ```
 http://localhost:8000/api/movies/order/{ORDER_BY}
 ```
